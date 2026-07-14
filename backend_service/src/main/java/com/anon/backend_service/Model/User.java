@@ -1,7 +1,12 @@
 package com.anon.backend_service.Model;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +20,44 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
+    
+    // Required by UserDetails interface - default authorities for regular users
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // All users have basic user permissions - add roles like "ROLE_ADMIN" if needed
+        return Collections.emptyList();
+    }
+    
+    @Override
+    public String getUsername() {
+        // Use email as the username for Spring Security
+        return this.email;
+    }
+    
+    @Override
+    public boolean isAccountNonExpired() {
+        // All accounts are valid (never expire)
+        return true;
+    }
+    
+    @Override
+    public boolean isAccountNonLocked() {
+        // No account locking implemented yet
+        return true;
+    }
+    
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // Passwords never expire
+        return true;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        // Only enable accounts that have verified their email and have system access
+        return this.emailVerified && this.hasSystemAccess;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
