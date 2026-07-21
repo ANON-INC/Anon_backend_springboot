@@ -40,7 +40,10 @@ public class SecurityConfig {
         "/api/posts",               // Get all public posts
         "/api/posts/{id}",          // Get single post
         "/api/posts/public/**",     // All public post endpoints
-        "/error"                    // Spring Boot error endpoint
+        "/error",                   // Spring Boot error endpoint
+        "/v3/api-docs/**",          // OpenAPI JSON spec
+        "/swagger-ui/**",           // Swagger UI assets
+        "/swagger-ui.html"          // Swagger UI entry point
     };
 
     @Bean
