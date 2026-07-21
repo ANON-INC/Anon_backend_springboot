@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 # JWT Configuration - property names match JwtService exactly
 jwt:
@@ -9,7 +9,7 @@ jwt:
 # Database configuration
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Anon
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:postgres}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
