@@ -1,9 +1,6 @@
 server:
   port: ${PORT:8080}
-
-app:
-  cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  forward-headers-strategy: framework
 
 # JWT Configuration - property names match JwtService exactly
 jwt:
@@ -35,6 +32,4 @@ spring:
         smtp:
           auth: true
           starttls:
-            enable: false
-          ssl:
             enable: true
