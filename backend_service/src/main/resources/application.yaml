@@ -10,7 +10,7 @@ jwt:
 # Database configuration
 spring:
   datasource:
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:postgres}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:Anon}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
@@ -23,7 +23,7 @@ spring:
   
   # SMTP configuration - fixed duplicate port issue
   mail:
-    host: smtp.gmail.com
+    host: ${MAIL_HOST:smtp.gmail.com}
     port: 465
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
@@ -31,7 +31,5 @@ spring:
       mail:
         smtp:
           auth: true
-          starttls:
-            enable: false
           ssl:
             enable: true
