@@ -10,7 +10,7 @@ jwt:
 # Database configuration
 spring:
   datasource:
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:Anon}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:postgres}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
