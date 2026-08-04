@@ -1,20 +1,25 @@
 package com.anon.backend_service.Service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    
+
     private final JavaMailSender javaMailSender;
-    
+
+    @Value("${spring.mail.from}")
+    private String fromAddress;
+
     public EmailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
-    
+
     public void sendVerificationEmail(String to, String verificationCode) {
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromAddress);
         message.setTo(to);
         message.setSubject("Your Verification Code");
         message.setText("Your 6-digit verification code is: " + verificationCode + "\n\nThis code expires in 15 minutes.");
