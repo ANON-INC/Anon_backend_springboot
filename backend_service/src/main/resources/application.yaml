@@ -21,12 +21,13 @@ spring:
       hibernate:
         format_sql: true
   
-  # SMTP configuration - fixed duplicate port issue
+  # SMTP configuration - Resend SMTP relay
   mail:
-    host: ${MAIL_HOST:smtp.gmail.com}
+    host: ${MAIL_HOST:smtp.resend.com}
     port: 465
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
+    from: ${MAIL_FROM}
     properties:
       mail:
         smtp:
